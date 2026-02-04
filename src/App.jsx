@@ -7,13 +7,13 @@ import moviesFromServer from './api/movies.json';
 export const App = () => {
   const [query, setQuery] = useState('');
 
-  const q = query.trim().toLowerCase();
+  const searchQuery = query.trim().toLowerCase();
 
   const visibleMovies = moviesFromServer.filter(movie => {
     const title = movie.title.toLowerCase();
     const descriptions = movie.description.toLowerCase();
 
-    return title.includes(q) || descriptions.includes(q);
+    return title.includes(searchQuery) || descriptions.includes(searchQuery);
   });
 
   return (
@@ -32,7 +32,7 @@ export const App = () => {
                 className="input"
                 placeholder="Type search word"
                 value={query}
-                onChange={e => setQuery(e.target.value)}
+                onChange={changeEvent => setQuery(changeEvent.target.value)}
               />
             </div>
           </div>
